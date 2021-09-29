@@ -8,12 +8,17 @@ package system.logic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 
 /**
  *
  * @author Emmanuel
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Canton {
+    @XmlID
     private String numero;
     private String nombre;
     private List<Distrito>distritos;
