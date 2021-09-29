@@ -5,6 +5,8 @@
  */
 package system;
 
+import system.presentation.clientes.Controller;
+import system.presentation.clientes.Model;
 import system.presentation.clientes.View;
 
 /**
@@ -14,8 +16,10 @@ import system.presentation.clientes.View;
 public class Application {
     
         public static void main(String[] args) {
-        View reg = new View();
-        reg.setVisible(true);
+        Model model=new Model() ;
+        View view = new View();
+        Controller controller = new Controller(model,view);
+        controller.show();  
+    }
 
      }
-}

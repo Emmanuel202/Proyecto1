@@ -214,6 +214,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 this.mapaPrincipal.setIcon(costaRica);
             }
         }*/
+        Provincia result = controller.getProvincia(evt.getX(), evt.getY());
+        if (result.equals(" ")) {
+                Icon costaRica = new javax.swing.ImageIcon(getClass().getResource("/mapas/CostaRica.png"));
+                this.mapaPrincipal.setIcon(costaRica);
+        }
+        else {
+                Icon maps = new javax.swing.ImageIcon(getClass().getResource("/mapas/"+result.getNumero()+".png"));
+                this.mapaPrincipal.setIcon(maps);
+                //break;
+            }
+    
     }//GEN-LAST:event_mapaPrincipalMouseMoved
 
     private void mapaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseClicked
