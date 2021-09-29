@@ -2,9 +2,12 @@ package system.presentation.clientes;
 
 import system.logic.Provincia;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import java.util.Observable;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class View extends javax.swing.JFrame implements java.util.Observer {
 
@@ -31,12 +34,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-       Provincia provincia =  model.getProvincia();
-        System.out.println(provincia.getNombre());
+       Provincia result =  model.getProvincia();
+     //  this.provincia.setText(result.getNombre());  ???
+       if(!result.equals(new Provincia())){
+        int i = Integer.parseInt(result.getNumero());
+       mapaPrincipal.setIcon(maps[i]);
+       }
     }
 //************** END MVC ***********
     public View() {
         initComponents();
+        loadMaps();
     }
 
     /**
@@ -215,20 +223,23 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         }*/
         Provincia result = controller.getProvincia(evt.getX(), evt.getY());
-        if (result.equals(" ")) {
-                Icon costaRica = new javax.swing.ImageIcon(getClass().getResource("/mapas/CostaRica.png"));
-                this.mapaPrincipal.setIcon(costaRica);
+        if (!result.equals(new Provincia())) {
+        int i = Integer.parseInt(result.getNumero());
+         mapaPrincipal.setIcon(maps[i]);
         }
-        else {
-                Icon maps = new javax.swing.ImageIcon(getClass().getResource("/mapas/"+result.getNumero()+".png"));
-                this.mapaPrincipal.setIcon(maps);
-                //break;
-            }
     
     }//GEN-LAST:event_mapaPrincipalMouseMoved
 
     private void mapaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseClicked
-        System.out.print("X: " + evt.getX() + " Y: " + evt.getY() + "\n");
+      Provincia result = controller.getProvincia(evt.getX(), evt.getY());
+        if (!result.equals(new Provincia())) {
+            this.provincia.setText(result.getNombre());
+            int i = Integer.parseInt(result.getNumero());
+            mapaPrincipal.setIcon(maps[i]);
+        }
+        else{
+        this.provincia.setText("");   
+        }
     }//GEN-LAST:event_mapaPrincipalMouseClicked
 
 
@@ -247,5 +258,16 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField provincia;
     // End of variables declaration//GEN-END:variables
-
+ int n=8;
+   ImageIcon[] maps;        
+    public void loadMaps() {
+        maps = new ImageIcon[n];
+        
+        try {
+            maps[0] = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/mapas/CostaRica.png")));
+            for(int p=1;p<n;p++) maps[p] = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/mapas/"+p+".png"))); 
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }  
 }
