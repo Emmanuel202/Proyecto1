@@ -4,10 +4,12 @@ import system.logic.Provincia;
 import java.awt.Rectangle;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Icon;
 import java.util.Observable;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import system.logic.Distrito;
 
 public class View extends javax.swing.JFrame implements java.util.Observer {
 
@@ -39,8 +41,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
        if(!result.equals(new Provincia())){
         int i = Integer.parseInt(result.getNumero());
        mapaPrincipal.setIcon(maps[i]);
-       canton.setModel(new javax.swing.DefaultComboBoxModel(model.getCantones().toArray()));
-       //canton.setSelectedItem(-1);
        }
     }
 //************** END MVC ***********
@@ -102,8 +102,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         jlbldistrito.setText("Distrito");
 
-        distrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +129,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -151,11 +149,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                                 .addComponent(canton, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(24, 24, 24)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbldistrito, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jlbldistrito, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -207,25 +206,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cantonActionPerformed
 
 
     private void mapaPrincipalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseMoved
-/*
-        
-        ArrayList listaProvincias = Provincia.generarProvincias();
-        for (int i = 0; i < 7; i++) {
-            Rectangle r = (Rectangle) listaProvincias.get(i);
-            if (r.contains(evt.getX(), evt.getY())) {
-                Icon provincia = new javax.swing.ImageIcon(getClass().getResource("/mapas/"+i+".png"));
-                this.mapaPrincipal.setIcon(provincia);
-                break;
-            } else {
-                Icon costaRica = new javax.swing.ImageIcon(getClass().getResource("/mapas/CostaRica.png"));
-                this.mapaPrincipal.setIcon(costaRica);
-            }
-        }*/
+
         Provincia result = controller.getProvincia(evt.getX(), evt.getY());
         if (!result.equals(new Provincia())) {
         int i = Integer.parseInt(result.getNumero());

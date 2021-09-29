@@ -73,52 +73,6 @@ public class Service {
         }
         return new ArrayList<>();
     }
-   
-    
-/*
-    
-    // Service methods
-    public Cliente clienteGet(String cedula) throws Exception{
-        Cliente result=data.getClientes().stream().filter(c->c.getCedula().equals(cedula)).findFirst().orElse(null);
-        if (result!=null) return result;
-        else throw new Exception("Cliente no existe");   
-    }
-    
-    public List<Cliente> clienteSearch(String cedula){
-        List<Cliente> result=data.getClientes().stream().filter(c->c.getCedula().startsWith(cedula)).collect(Collectors.toList());
-       return result;        
-    }
-    
-    public List<Cliente> clienteAll(){
-        return data.getClientes();       
-    }
-    
-    public void clienteAdd(Cliente cliente) throws Exception{
-        Cliente old=data.getClientes().stream().filter(c->c.getCedula().equals(cliente.getCedula())).findFirst().orElse(null);
-        if (old==null) data.getClientes().add(cliente);
-        else throw new Exception("Cliente ya existe");           
-        
-    }    
-
-//---------------
-    public Factura facturaGet(String numero) throws Exception{
-        Factura result=data.getFacturas().stream().filter(f->f.getNumero().equals(numero)).findFirst().orElse(null);
-        if (result!=null) return result;
-        else throw new Exception("Factura no existe");   
-    }
-    
-    public List<Factura> facturaSearch(String numero){
-        List<Factura> result=data.getFacturas().stream().filter(f->f.getNumero().startsWith(numero)).collect(Collectors.toList());
-       return result;        
-    }
-    
-    public void facturaAdd(Factura factura) throws Exception{
-        Factura old=data.getFacturas().stream().filter(f->f.getNumero().equals(factura.getNumero())).findFirst().orElse(null);
-        if (old==null) data.getFacturas().add(factura);
-        else throw new Exception("Factura ya existe");           
-        
-    }    
-  */
     public void store(){
         try {
             XmlPersister.instance().store(data);

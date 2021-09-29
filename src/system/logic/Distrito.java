@@ -48,7 +48,7 @@ public class Distrito {
 
     @Override
     public String toString() {
-        return "Distrito{" + "nombre=" + nombre + '}';
+        return this.getNombre();
     }
 
     @Override

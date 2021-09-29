@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Canton {
     @XmlID
     private String numero;
     private String nombre;
+    @XmlIDREF
     private List<Distrito>distritos;
 
     public Canton(String numero, String nombre, List<Distrito> distritos) {

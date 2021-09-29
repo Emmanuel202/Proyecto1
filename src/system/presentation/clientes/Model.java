@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import system.logic.Canton;
+import system.logic.Distrito;
 import system.logic.Provincia;
 
 public class Model extends Observable{
@@ -11,6 +12,7 @@ public class Model extends Observable{
     // Model attributes here
     Provincia provincia;
     List<Canton> cantones;
+    List<Distrito> distritos;
     // Model gets and sets here
 
     public Provincia getProvincia() {
@@ -28,6 +30,15 @@ public class Model extends Observable{
     public void setCantones(List<Canton> cantones) {
         this.cantones = cantones;
     }
+
+    public List<Distrito> getDistritos() {
+        return distritos;
+    }
+
+    public void setDistritos(List<Distrito> distritos) {
+        this.distritos = distritos;
+    }
+    
     
     @Override
     public synchronized void addObserver(Observer o) {
