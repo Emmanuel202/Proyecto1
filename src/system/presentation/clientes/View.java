@@ -39,6 +39,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
        if(!result.equals(new Provincia())){
         int i = Integer.parseInt(result.getNumero());
        mapaPrincipal.setIcon(maps[i]);
+       canton.setModel(new javax.swing.DefaultComboBoxModel(model.getCantones().toArray()));
+       //canton.setSelectedItem(-1);
        }
     }
 //************** END MVC ***********
@@ -92,7 +94,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         jlblCanton.setText("Cantón");
 
-        canton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         canton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantonActionPerformed(evt);
@@ -142,10 +143,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addComponent(jlblProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(provincia, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblCanton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(canton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(85, 85, 85)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlblCanton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(108, 108, 108))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(canton, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(24, 24, 24)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,6 +244,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         else{
         this.provincia.setText("");   
         }
+       canton.setModel(new javax.swing.DefaultComboBoxModel(controller.getCantones(result.getNombre()).toArray()));
     }//GEN-LAST:event_mapaPrincipalMouseClicked
 
 
@@ -260,7 +265,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     // End of variables declaration//GEN-END:variables
  int n=8;
    ImageIcon[] maps;        
-    public void loadMaps() {
+    private void loadMaps() {
         maps = new ImageIcon[n];
         
         try {

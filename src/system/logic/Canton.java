@@ -61,7 +61,7 @@ public class Canton {
 
     @Override
     public String toString() {
-        return "Canton{" + "nombre=" + nombre + '}';
+        return  this.getNombre();
     }
 
     @Override

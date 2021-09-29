@@ -62,6 +62,17 @@ public class Service {
         }
         return new Provincia();
     }
+    public List<Canton> getCantones(String nombreProvincia){
+        List<Provincia> provincias = data.getProvincias();
+
+        for(int i = 0; i<provincias.size();i++){
+        Provincia provinciaTemp = provincias.get(i);   
+        if(provinciaTemp.getNombre() == nombreProvincia){
+           return provinciaTemp.getCantones();
+           }
+        }
+        return new ArrayList<>();
+    }
    
     
 /*
