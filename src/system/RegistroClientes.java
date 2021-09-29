@@ -1,5 +1,6 @@
 package system;
 
+import system.logic.Provincia;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.Icon;
