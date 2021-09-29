@@ -62,15 +62,7 @@ public class Service {
         }
         return new Provincia();
     }
-        for (int i = 0; i < 7; i++) {
-            Rectangle r = (Rectangle) listaProvincias.get(i);
-            if (r.contains(evt.getX(), evt.getY())) {
-                Icon provincia = new javax.swing.ImageIcon(getClass().getResource("/mapas/"+i+".png"));
-                this.mapaPrincipal.setIcon(provincia);
-                break;
-            } else {
-                Icon costaRica = new javax.swing.ImageIcon(getClass().getResource("/mapas/CostaRica.png"));
-                this.mapaPrincipal.setIcon(costaRica);
+   
     
 /*
     

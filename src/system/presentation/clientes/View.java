@@ -1,16 +1,40 @@
-package system;
+package system.presentation.clientes;
 
 import system.logic.Provincia;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.Icon;
+import java.util.Observable;
 
-public class RegistroClientes extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame implements java.util.Observer {
 
-    /**
-     * Creates new form RegistroClientes
-     */
-    public RegistroClientes() {
+//**************  MVC ***********
+    Controller controller;
+    Model model;
+    
+    public void setController(Controller controller){
+        this.controller=controller;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+    
+    public void setModel(Model model){
+        this.model=model;
+         model.addObserver(this);
+    }
+
+    public Model getModel() {
+        return model;
+    }
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        
+    }
+//************** END MVC ***********
+    public View() {
         initComponents();
     }
 
@@ -175,7 +199,8 @@ public class RegistroClientes extends javax.swing.JFrame {
 
 
     private void mapaPrincipalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseMoved
-
+/*
+        
         ArrayList listaProvincias = Provincia.generarProvincias();
         for (int i = 0; i < 7; i++) {
             Rectangle r = (Rectangle) listaProvincias.get(i);
@@ -187,47 +212,13 @@ public class RegistroClientes extends javax.swing.JFrame {
                 Icon costaRica = new javax.swing.ImageIcon(getClass().getResource("/mapas/CostaRica.png"));
                 this.mapaPrincipal.setIcon(costaRica);
             }
-        }
+        }*/
     }//GEN-LAST:event_mapaPrincipalMouseMoved
 
     private void mapaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseClicked
         System.out.print("X: " + evt.getX() + " Y: " + evt.getY() + "\n");
     }//GEN-LAST:event_mapaPrincipalMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(RegistroClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(RegistroClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(RegistroClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(RegistroClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new RegistroClientes().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;

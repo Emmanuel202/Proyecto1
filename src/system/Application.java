@@ -5,6 +5,8 @@
  */
 package system;
 
+import system.presentation.clientes.View;
+
 /**
  *
  * @author Emmanuel
@@ -12,7 +14,7 @@ package system;
 public class Application {
     
         public static void main(String[] args) {
-        RegistroClientes reg = new RegistroClientes();
+        View reg = new View();
         reg.setVisible(true);
 
      }
