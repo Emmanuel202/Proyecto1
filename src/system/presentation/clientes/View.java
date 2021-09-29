@@ -31,7 +31,8 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        
+       Provincia provincia =  model.getProvincia();
+        System.out.println(provincia.getNombre());
     }
 //************** END MVC ***********
     public View() {
