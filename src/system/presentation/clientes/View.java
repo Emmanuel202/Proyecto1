@@ -42,20 +42,32 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         Cliente cliente = model.getCliente();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
-        provincia.setText(cliente.getProvincia().getNombre());
-        
-        if(this.getProvinciaActual().getNombre() == ""){
-            provinciaActual = cliente.getProvincia();
+        if(cliente.getProvincia().getNombre() != ""){
+          provinciaActual = cliente.getProvincia();
+          provincia.setText(cliente.getProvincia().getNombre());
         }
-        provincia.setText(this.getProvinciaActual().toString());
+        else
+        {
+            provinciaActual = new Provincia();
+            canton.setModel(new DefaultComboBoxModel(provinciaActual.getCantones().toArray()));
+            
+        }
+             //   canton.setSelectedItem(cliente.getCanton());
+       // distrito.setSelectedItem(cliente.getDistrito());
+
+
+        
+       //// if(this.getProvinciaActual().getNombre() == ""){
+        //    provinciaActual = cliente.getProvincia();
+       // }
+      //  provincia.setText(this.getProvinciaActual().toString());
         
      //
      
-       
-        canton.setSelectedItem(cliente.getCanton());
+ 
         
         //distrito.setModel(new DefaultComboBoxModel(model.getDistritos().toArray()));
-        distrito.setSelectedItem(cliente.getDistrito());
+
     }
 //************** END MVC ***********
 
@@ -218,9 +230,22 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             canton.setSelectedItem(cliente.getCanton());
             distrito.setModel(new DefaultComboBoxModel(controller.getDistritos(cliente.getCanton().getNombre()).toArray()));
             distrito.setSelectedItem(cliente.getDistrito());
+            provincia.setText(cliente.getProvincia().getNombre());
+            mapaPrincipal.setIcon(maps[Integer.parseInt(cliente.getProvincia().getNumero())]);
         }
-        provincia.setText(cliente.getProvincia().getNombre());
-        mapaPrincipal.setIcon(maps[Integer.parseInt(cliente.getProvincia().getNumero())]);
+        else
+        {            
+            provinciaActual = new Provincia();
+            
+            distrito.removeAllItems();
+            canton.setModel(new DefaultComboBoxModel(provinciaActual.getCantones().toArray()));
+          //  canton.removeAllItems();
+            mapaPrincipal.setIcon(maps[0]);
+            provincia.setText("");
+            this.provinciaActual.setNombre("");
+
+        }
+
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void mapaPrincipalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseMoved
@@ -250,6 +275,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), this.getProvinciaActual(), (Canton) canton.getSelectedItem(), (Distrito) distrito.getSelectedItem()));
+        mapaPrincipal.setIcon(maps[0]);
+        provincia.setText("");
+        canton.removeAllItems();
+        distrito.removeAllItems();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
