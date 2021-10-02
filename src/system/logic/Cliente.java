@@ -1,5 +1,7 @@
 package system.logic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -9,29 +11,39 @@ import javax.xml.bind.annotation.XmlIDREF;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Cliente {
     @XmlID
-    String cedula;
-    String nombre;
+   private String cedula;
+   private String nombre;
     @XmlIDREF
-    Provincia provincia;
+    private Provincia provincia;
     @XmlIDREF
-    Canton canton;
+   private Canton canton;
     @XmlIDREF
-    Distrito distrito;
+    private Distrito distrito;
+   private List<Prestamo> prestamos;
 
+    public Cliente(String cedula, String nombre, Provincia provincia, Canton canton, Distrito distrito, List<Prestamo> prestamos) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.provincia = provincia;
+        this.canton = canton;
+        this.distrito = distrito;
+        this.prestamos = prestamos;
+    }
     public Cliente(String cedula, String nombre, Provincia provincia, Canton canton, Distrito distrito) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.provincia = provincia;
         this.canton = canton;
         this.distrito = distrito;
+        this.prestamos = new ArrayList<>();
     }
-
     public Cliente() {
         this.cedula = "";
         this.nombre = "";
         this.provincia = new Provincia();
         this.canton = new Canton();
         this.distrito = new Distrito();
+        this.prestamos = new ArrayList<>();
     }
 
     public String getCedula() {
@@ -73,6 +85,15 @@ public class Cliente {
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
     }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
+    
 
     @Override
     public int hashCode() {

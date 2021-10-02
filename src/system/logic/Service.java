@@ -3,6 +3,9 @@ package system.logic;
 import java.util.List;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import system.data.Data;
 import system.data.XmlPersister;
 
@@ -33,7 +36,7 @@ public class Service {
 
     
 
-    //Service methods for Ciente
+    //----------------------------------------------------------------------------------------------Service methods for Ciente
     public void clienteAdd(Cliente cliente) throws Exception {
         Cliente old = data.getClientes().stream().filter(c -> c.getCedula().equals(cliente.getCedula())).findFirst().orElse(null);
         if (old == null) {
@@ -114,7 +117,30 @@ public class Service {
         } catch (Exception ex) {
         }
     }
-
+//-------------------------------------------------------------------------------------------------------fin de metodos de cliente
+    
+//----------------------------------Metodos relacionados a prestamo--------------------------------------------------
+    public void prestamoAddTo(String idCliente, Prestamo prestamo){
+        try {
+            Cliente result = clienteGet(idCliente);
+            result.getPrestamos().add(prestamo);
+        } catch (Exception ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        public List<Prestamo> prestamoSearch(String idCliente){
+            
+        try {
+            Cliente result;
+            result = clienteGet(idCliente);
+            List<Prestamo> prestamos = result.getPrestamos();
+            return prestamos;
+        } catch (Exception ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ArrayList<>();           
+    }
+   //-------------------------------------------------------------------------------------------------------------------------
     public Service() {
         try {
             clienteActual = new Cliente();

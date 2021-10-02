@@ -2,6 +2,7 @@
 package system.presentation.prestamos;
 import java.util.Observable;
 import system.logic.Cliente;
+import system.logic.Prestamo;
 
 public class View extends javax.swing.JFrame implements java.util.Observer {
 
@@ -29,15 +30,28 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     @Override
     public void update(Observable o, Object arg) {
         Cliente cliente = model.getCliente();
+        Prestamo prestamo = model.getPrestamo();
         if(cliente.equals(new Cliente()))
         {
             id.setText("");
             nombre.setText("");
+           this.TXT_ID.setText("");
+           this.txt_monto.setText("");
+           this.txt_plazo.setText("");
+           this.txt_tasa.setText("");
        }
        else
        {
            id.setText(cliente.getCedula());
            nombre.setText(cliente.getNombre());
+           this.TXT_ID.setText(prestamo.getId());
+           this.txt_monto.setText(String.valueOf(prestamo.getMonto()));
+           this.txt_plazo.setText(String.valueOf(prestamo.getPlazo()));
+           this.txt_tasa.setText(String.valueOf(prestamo.getTasa()));
+           this.jTablePrestamos.setModel(new PrestamosTableModel(model.getPrestamos()));
+          
+           
+           
        }
     }
 //************** END MVC ***********
@@ -49,6 +63,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
    */
     public View() {
         initComponents();
+    
         
     }
 
@@ -62,7 +77,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMensualidades = new javax.swing.JTable();
+        jTablePrestamos = new javax.swing.JTable();
         btn_regresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -73,11 +88,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        TXT_ID = new javax.swing.JTextField();
+        txt_monto = new javax.swing.JTextField();
+        txt_plazo = new javax.swing.JTextField();
+        txt_tasa = new javax.swing.JTextField();
+        btn_agregar = new javax.swing.JButton();
+        btn_listar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Préstamo");
 
-        jTableMensualidades.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -88,7 +109,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableMensualidades);
+        jTablePrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePrestamosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTablePrestamos);
 
         btn_regresar.setText("REGRESAR");
         btn_regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,53 +136,70 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         jLabel4.setText("NUMERO DE PRESTAMO:");
 
-        jLabel5.setText("MONTO DEL PRESTAMO");
+        jLabel5.setText("MONTO DEL PRESTAMO:");
 
         jLabel6.setText("TASA DE INTERES:");
 
         jLabel7.setText("PLAZO DEL PRESTAMO:");
+
+        btn_agregar.setText("AGREGAR NUEVO PRESTAMO");
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
+
+        btn_listar.setText("LISTAR TODOS LOS PRESTAMOS");
+        btn_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nombre)
+                                    .addComponent(id)))
+                            .addComponent(btn_regresar)
                             .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel1))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(10, 10, 10)
-                                            .addComponent(nombre))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(id)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btn_regresar)
-                                            .addGap(43, 43, 43)))))))
-                    .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_listar)
+                                .addGap(67, 67, 67)
+                                .addComponent(btn_agregar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel6))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                            .addComponent(jLabel6))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TXT_ID)
+                            .addComponent(txt_monto)
+                            .addComponent(txt_plazo)
+                            .addComponent(txt_tasa))))
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_regresar)
                     .addComponent(jLabel2)
                     .addComponent(id))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -166,16 +209,30 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(TXT_ID))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_monto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_plazo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_tasa))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_agregar)
+                    .addComponent(btn_listar))
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btn_regresar)
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -186,9 +243,34 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         controller.clientesSHOW();
     }//GEN-LAST:event_btn_regresarActionPerformed
 
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        // TODO add your handling code here:
+        
+        String num = this.TXT_ID.getText();
+        double monto = Double.parseDouble(this.txt_monto.getText());
+        int plazo = Integer.parseInt(this.txt_plazo.getText());
+        double tasa = Double.parseDouble(this.txt_tasa.getText());
+        controller.prestamoAddTo(this.id.getText() ,new Prestamo(num,monto,plazo,tasa));
+        controller.prestamoSearch(id.getText());
+    }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void jTablePrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrestamosMouseClicked
+                if(evt.getClickCount()==2){
+            controller.PrestamoEdit(this.jTablePrestamos.getSelectedRow());
+        }
+    }//GEN-LAST:event_jTablePrestamosMouseClicked
+
+    private void btn_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_listarActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TXT_ID;
+    private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_listar;
     private javax.swing.JButton btn_regresar;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
@@ -199,8 +281,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMensualidades;
+    private javax.swing.JTable jTablePrestamos;
     private javax.swing.JLabel nombre;
+    private javax.swing.JTextField txt_monto;
+    private javax.swing.JTextField txt_plazo;
+    private javax.swing.JTextField txt_tasa;
     // End of variables declaration//GEN-END:variables
 
 

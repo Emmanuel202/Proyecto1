@@ -2,6 +2,7 @@ package system.presentation.clientes;
 
 import system.logic.Provincia;
 import java.io.IOException;
+import java.util.List;
 import java.util.Observable;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
@@ -9,6 +10,7 @@ import javax.swing.ImageIcon;
 import system.logic.Canton;
 import system.logic.Cliente;
 import system.logic.Distrito;
+import system.logic.Prestamo;
 
 public class View extends javax.swing.JFrame implements java.util.Observer {
 
@@ -46,6 +48,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         {
             provinciaActual = new Provincia();
             canton.setModel(new DefaultComboBoxModel(provinciaActual.getCantones().toArray()));
+            List<Prestamo> prestamos = cliente.getPrestamos();
             
         }
              //   canton.setSelectedItem(cliente.getCanton());
@@ -242,6 +245,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         Cliente cliente = model.getCliente();
         if(!cliente.equals(new Cliente()))
         {
+            
             canton.setModel(new DefaultComboBoxModel(controller.getCantones(cliente.getProvincia().getNombre()).toArray()));
             canton.setSelectedItem(cliente.getCanton());
             distrito.setModel(new DefaultComboBoxModel(controller.getDistritos(cliente.getCanton().getNombre()).toArray()));
@@ -249,6 +253,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             provincia.setText(cliente.getProvincia().getNombre());
             mapaPrincipal.setIcon(maps[Integer.parseInt(cliente.getProvincia().getNumero())]);
             btn_prestamo.setEnabled(true);
+            List<Prestamo> prestamos = cliente.getPrestamos();
         }
         else
         {            
