@@ -18,14 +18,15 @@ public class Prestamo {
     private double tasa;
     //private List<Mensualidad> m;
     
-    public Prestamo(double m, int p, double i, String id) {
+ 
 
-        this.monto = m;
-        this.plazo = p;
-        this.tasa = i / 100;
-       // this.m = new ArrayList(); TEMPORALEMTE COMENTADO EN LO QUE SE CREA LA CLASE MENSUALIDAD
+    public Prestamo(String id, double monto, int plazo, double tasa) {
         this.id = id;
+        this.monto = monto;
+        this.plazo = plazo;
+        this.tasa = tasa;
     }
+    
 
     public Prestamo() {
         this.id = "";
