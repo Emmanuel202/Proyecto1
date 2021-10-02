@@ -1,6 +1,7 @@
 
 package system.presentation.prestamos;
 import java.util.Observable;
+import system.logic.Cliente;
 
 public class View extends javax.swing.JFrame implements java.util.Observer {
 
@@ -27,7 +28,17 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     
     @Override
     public void update(Observable o, Object arg) {
-        
+        Cliente cliente = model.getCliente();
+        if(cliente.equals(new Cliente()))
+        {
+            id.setText("");
+            nombre.setText("");
+       }
+       else
+       {
+           id.setText(cliente.getCedula());
+           nombre.setText(cliente.getNombre());
+       }
     }
 //************** END MVC ***********
 
@@ -52,8 +63,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMensualidades = new javax.swing.JTable();
-        jLabelPrestamo = new javax.swing.JLabel();
         btn_regresar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        nombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Préstamo");
@@ -71,8 +85,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         ));
         jScrollPane1.setViewportView(jTableMensualidades);
 
-        jLabelPrestamo.setText("jLabel1");
-
         btn_regresar.setText("REGRESAR");
         btn_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,35 +92,56 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
+        jLabel2.setText("ID DEL CLIENTE:");
+
+        jLabel1.setText("NOMBRE DEL CLIENTE:");
+
+        id.setText("jLabel3");
+
+        nombre.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(43, 323, Short.MAX_VALUE)
+                .addComponent(btn_regresar)
+                .addGap(105, 105, 105))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelPrestamo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(29, 29, 29)
-                        .addComponent(btn_regresar)
-                        .addGap(105, 105, 105))
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(50, Short.MAX_VALUE))))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nombre))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(95, 95, 95)
+                                .addComponent(id)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabelPrestamo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btn_regresar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
+                .addComponent(btn_regresar)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(id))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(89, 89, 89))
         );
 
         pack();
@@ -123,9 +156,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_regresar;
-    private javax.swing.JLabel jLabelPrestamo;
+    private javax.swing.JLabel id;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMensualidades;
+    private javax.swing.JLabel nombre;
     // End of variables declaration//GEN-END:variables
 
 

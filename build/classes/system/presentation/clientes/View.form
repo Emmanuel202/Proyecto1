@@ -73,7 +73,7 @@
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="prestamos" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_prestamo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -95,7 +95,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="prestamos" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_prestamo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -208,12 +208,13 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mapaPrincipalMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="prestamos">
+    <Component class="javax.swing.JButton" name="btn_prestamo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ir a Prestamos..."/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prestamosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_prestamoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

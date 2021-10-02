@@ -21,6 +21,17 @@ public class Service {
     // Service data
     private Data data;
     private List<Rectangle> rectangulosProvincias;
+    private Cliente clienteActual; // contendra el ultimo cliente consultado
+
+    public Cliente getClienteActual() {
+        return clienteActual;
+    }
+
+    public void setClienteActual(Cliente clienteActual) {
+        this.clienteActual = clienteActual;
+    }
+
+    
 
     //Service methods for Ciente
     public void clienteAdd(Cliente cliente) throws Exception {
@@ -35,6 +46,7 @@ public class Service {
     public Cliente clienteGet(String cedula) throws Exception {
         Cliente result = data.getClientes().stream().filter(c -> c.getCedula().equals(cedula)).findFirst().orElse(null);
         if (result != null) {
+            setClienteActual(result);
             return result;
         } else {
             throw new Exception("Cliente no existe");
@@ -105,6 +117,7 @@ public class Service {
 
     public Service() {
         try {
+            clienteActual = new Cliente();
             data = XmlPersister.instance().load();
             generarProvincias();
         } catch (Exception e) {

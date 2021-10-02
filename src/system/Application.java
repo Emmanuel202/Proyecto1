@@ -15,7 +15,7 @@ public class Application {
     
     
         public static void main(String[] args) {
-            
+           try { 
          system.presentation.prestamos.Model modelPrestamos = new system.presentation.prestamos.Model() ;
         system.presentation.prestamos.View viewPrestamos = new system.presentation.prestamos.View();
         system.presentation.prestamos.Controller controllerPrestamos = new system.presentation.prestamos.Controller(modelPrestamos,viewPrestamos);
@@ -27,7 +27,8 @@ public class Application {
         system.presentation.clientes.Controller controllerClientes = new Controller(modelClientes,viewClientes);
         CLIENTES = controllerClientes;
         CLIENTES.show();
-        
+           }
+           catch(Exception ex){System.out.print(ex);}
 
     }
         public static system.presentation.clientes.Controller CLIENTES;

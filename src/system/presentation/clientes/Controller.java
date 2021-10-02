@@ -63,8 +63,10 @@ public class Controller {
             Cliente cliente = Service.instance().clienteGet(cedula);
             model.setCliente(cliente);
             model.commit();
+           // Service.instance().setClienteActual(cliente);
         } catch (Exception ex) {
             model.setCliente(new Cliente());
+           // Service.instance().setClienteActual(new Cliente());
             model.commit();
         }
     }

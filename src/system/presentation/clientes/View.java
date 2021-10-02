@@ -95,7 +95,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         btnConsultar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         mapaPrincipal = new javax.swing.JLabel();
-        prestamos = new javax.swing.JButton();
+        btn_prestamo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -148,10 +148,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
-        prestamos.setText("Ir a Prestamos...");
-        prestamos.addActionListener(new java.awt.event.ActionListener() {
+        btn_prestamo.setText("Ir a Prestamos...");
+        btn_prestamo.setEnabled(false);
+        btn_prestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prestamosActionPerformed(evt);
+                btn_prestamoActionPerformed(evt);
             }
         });
 
@@ -196,7 +197,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                         .addGap(28, 28, 28)
                         .addComponent(btnConsultar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(prestamos)
+                        .addComponent(btn_prestamo)
                         .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
@@ -212,7 +213,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(prestamos)
+                        .addComponent(btn_prestamo)
                         .addGap(17, 17, 17)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblNombre)
@@ -247,6 +248,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             distrito.setSelectedItem(cliente.getDistrito());
             provincia.setText(cliente.getProvincia().getNombre());
             mapaPrincipal.setIcon(maps[Integer.parseInt(cliente.getProvincia().getNumero())]);
+            btn_prestamo.setEnabled(true);
         }
         else
         {            
@@ -258,6 +260,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             mapaPrincipal.setIcon(maps[0]);
             provincia.setText("");
             this.provinciaActual.setNombre("");
+            btn_prestamo.setEnabled(false);
 
         }
 
@@ -306,10 +309,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         controller.exit();
     }//GEN-LAST:event_formWindowClosing
 
-    private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
+    private void btn_prestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prestamoActionPerformed
         // TODO add your handling code here:
         controller.prestamosSHOW();
-    }//GEN-LAST:event_prestamosActionPerformed
+    }//GEN-LAST:event_btn_prestamoActionPerformed
 
     private Provincia getProvinciaActual() {
         return provinciaActual;
@@ -323,6 +326,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btn_prestamo;
     private javax.swing.JComboBox<Canton> canton;
     private javax.swing.JTextField cedula;
     private javax.swing.JComboBox<Distrito> distrito;
@@ -333,7 +337,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JLabel jlbldistrito;
     private javax.swing.JLabel mapaPrincipal;
     private javax.swing.JTextField nombre;
-    private javax.swing.JButton prestamos;
     private javax.swing.JTextField provincia;
     // End of variables declaration//GEN-END:variables
  int n = 8;
