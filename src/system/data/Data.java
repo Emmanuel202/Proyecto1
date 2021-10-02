@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import system.logic.Canton;
 import system.logic.Cliente;
 import system.logic.Distrito;
+import system.logic.Prestamo;
 import system.logic.Provincia;
 
 @XmlRootElement
@@ -18,12 +19,14 @@ public class Data {
     private List<Provincia> provincias;
     private List<Canton> cantones;
     private List<Distrito> distritos;
+    private List<Prestamo> prestamos;
 
     public Data() {
         clientes = new ArrayList();
         provincias = new ArrayList<>();
         cantones = new ArrayList<>();
         distritos = new ArrayList<>();
+        prestamos = new ArrayList<>();
     }
 
     public List<Provincia> getProvincias() {
@@ -56,6 +59,14 @@ public class Data {
 
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
+    }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
     }
     
     
