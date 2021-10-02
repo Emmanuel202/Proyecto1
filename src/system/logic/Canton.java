@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package system.logic;
 
 import java.util.ArrayList;
@@ -13,17 +8,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 
-/**
- *
- * @author Emmanuel
- */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Canton {
+
     @XmlID
     private String numero;
     private String nombre;
     @XmlIDREF
-    private List<Distrito>distritos;
+    private List<Distrito> distritos;
 
     public Canton(String numero, String nombre, List<Distrito> distritos) {
         this.numero = numero;
@@ -34,7 +26,7 @@ public class Canton {
     public Canton() {
         this.numero = "";
         this.nombre = "";
-        this.distritos = new ArrayList<>();  
+        this.distritos = new ArrayList<>();
     }
 
     public String getNumero() {
@@ -63,7 +55,7 @@ public class Canton {
 
     @Override
     public String toString() {
-        return  this.getNombre();
+        return this.getNombre();
     }
 
     @Override
@@ -90,9 +82,5 @@ public class Canton {
         }
         return true;
     }
-    
-    
-    
-    
-    
+
 }

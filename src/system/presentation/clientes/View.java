@@ -8,7 +8,10 @@ import java.util.List;
 import javax.swing.Icon;
 import java.util.Observable;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import system.logic.Canton;
+import system.logic.Cliente;
 import system.logic.Distrito;
 
 public class View extends javax.swing.JFrame implements java.util.Observer {
@@ -16,36 +19,49 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 //**************  MVC ***********
     Controller controller;
     Model model;
-    
-    public void setController(Controller controller){
-        this.controller=controller;
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     public Controller getController() {
         return controller;
     }
-    
-    public void setModel(Model model){
-        this.model=model;
-         model.addObserver(this);
+
+    public void setModel(Model model) {
+        this.model = model;
+        model.addObserver(this);
     }
 
     public Model getModel() {
         return model;
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
-       Provincia result =  model.getProvincia();
-     //  this.provincia.setText(result.getNombre());  ???
-       if(!result.equals(new Provincia())){
-        int i = Integer.parseInt(result.getNumero());
-       mapaPrincipal.setIcon(maps[i]);
-       }
+        Cliente cliente = model.getCliente();
+        cedula.setText(cliente.getCedula());
+        nombre.setText(cliente.getNombre());
+        provincia.setText(cliente.getProvincia().getNombre());
+        
+        if(this.getProvinciaActual().getNombre() == ""){
+            provinciaActual = cliente.getProvincia();
+        }
+        provincia.setText(this.getProvinciaActual().toString());
+        
+     //
+     
+       
+        canton.setSelectedItem(cliente.getCanton());
+        
+        //distrito.setModel(new DefaultComboBoxModel(model.getDistritos().toArray()));
+        distrito.setSelectedItem(cliente.getDistrito());
     }
 //************** END MVC ***********
+
     public View() {
         initComponents();
+        this.provinciaActual = new Provincia();
         loadMaps();
     }
 
@@ -73,22 +89,15 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         mapaPrincipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jlblCedula.setText("Cedula");
 
-        cedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cedulaActionPerformed(evt);
-            }
-        });
-
         jlblNombre.setText("Nombre");
-
-        nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
-            }
-        });
 
         jlblProvincia.setText("Provincia");
 
@@ -110,6 +119,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         });
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         mapaPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mapas/CostaRica.png"))); // NOI18N
         mapaPrincipal.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -129,13 +143,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnConsultar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,14 +161,22 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))))
+                                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(mapaPrincipal))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(btnConsultar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mapaPrincipal))
+                        .addContainerGap(40, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,53 +209,74 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cedulaActionPerformed
-
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
-
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
+        controller.clienteGet(cedula.getText());
+        Cliente cliente = model.getCliente();
+        if(!cliente.equals(new Cliente()))
+        {
+            canton.setModel(new DefaultComboBoxModel(controller.getCantones(cliente.getProvincia().getNombre()).toArray()));
+            canton.setSelectedItem(cliente.getCanton());
+            distrito.setModel(new DefaultComboBoxModel(controller.getDistritos(cliente.getCanton().getNombre()).toArray()));
+            distrito.setSelectedItem(cliente.getDistrito());
+        }
+        provincia.setText(cliente.getProvincia().getNombre());
+        mapaPrincipal.setIcon(maps[Integer.parseInt(cliente.getProvincia().getNumero())]);
     }//GEN-LAST:event_btnConsultarActionPerformed
-
-    private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
-
-    }//GEN-LAST:event_cantonActionPerformed
-
 
     private void mapaPrincipalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseMoved
 
         Provincia result = controller.getProvincia(evt.getX(), evt.getY());
         if (!result.equals(new Provincia())) {
-        int i = Integer.parseInt(result.getNumero());
-         mapaPrincipal.setIcon(maps[i]);
-        }
-    
-    }//GEN-LAST:event_mapaPrincipalMouseMoved
-
-    private void mapaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseClicked
-      Provincia result = controller.getProvincia(evt.getX(), evt.getY());
-        if (!result.equals(new Provincia())) {
-            this.provincia.setText(result.getNombre());
             int i = Integer.parseInt(result.getNumero());
             mapaPrincipal.setIcon(maps[i]);
         }
-        else{
-        this.provincia.setText("");   
+
+    }//GEN-LAST:event_mapaPrincipalMouseMoved
+
+    private void mapaPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mapaPrincipalMouseClicked
+        this.setProvinciaActual(controller.getProvincia(evt.getX(), evt.getY()));
+        Provincia resultProvincia = this.getProvinciaActual();
+        if (!resultProvincia.equals(new Provincia())) {
+            this.provincia.setText(resultProvincia.getNombre());
+            int i = Integer.parseInt(resultProvincia.getNumero());
+            mapaPrincipal.setIcon(maps[i]);
         }
-       canton.setModel(new javax.swing.DefaultComboBoxModel(controller.getCantones(result.getNombre()).toArray()));
+        canton.setModel(new DefaultComboBoxModel(controller.getCantones(resultProvincia.getNombre()).toArray()));
+//        canton.setSelectedIndex(0);
+       // distrito.setModel(new DefaultComboBoxModel(controller.getDistritos(canton.getSelectedItem().toString()).toArray()));
+//        distrito.setSelectedIndex(0);
+        this.provincia.setText(resultProvincia.getNombre());
     }//GEN-LAST:event_mapaPrincipalMouseClicked
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        controller.clienteAdd(new Cliente(cedula.getText(), nombre.getText(), this.getProvinciaActual(), (Canton) canton.getSelectedItem(), (Distrito) distrito.getSelectedItem()));
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
+        String nombreCanton = canton.getSelectedItem().toString();
+        distrito.setModel(new DefaultComboBoxModel(controller.getDistritos(nombreCanton).toArray()));
+        this.provincia.setText(this.getProvinciaActual().getNombre());
+    }//GEN-LAST:event_cantonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        controller.exit();
+    }//GEN-LAST:event_formWindowClosing
+
+    private Provincia getProvinciaActual() {
+        return provinciaActual;
+    }
+
+    private void setProvinciaActual(Provincia provinciaActual) {
+        this.provinciaActual = provinciaActual;
+    }
+
+    private Provincia provinciaActual;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<String> canton;
+    private javax.swing.JComboBox<Canton> canton;
     private javax.swing.JTextField cedula;
-    private javax.swing.JComboBox<String> distrito;
+    private javax.swing.JComboBox<Distrito> distrito;
     private javax.swing.JLabel jlblCanton;
     private javax.swing.JLabel jlblCedula;
     private javax.swing.JLabel jlblNombre;
@@ -249,16 +286,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField provincia;
     // End of variables declaration//GEN-END:variables
- int n=8;
-   ImageIcon[] maps;        
+ int n = 8;
+    ImageIcon[] maps;
+
     private void loadMaps() {
         maps = new ImageIcon[n];
-        
+
         try {
             maps[0] = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/mapas/CostaRica.png")));
-            for(int p=1;p<n;p++) maps[p] = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/mapas/"+p+".png"))); 
+            for (int p = 1; p < n; p++) {
+                maps[p] = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/mapas/" + p + ".png")));
+            }
         } catch (IOException e) {
             System.err.println(e);
         }
-    }  
+    }
 }
