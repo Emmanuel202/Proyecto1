@@ -6,8 +6,6 @@
 package system;
 
 import system.presentation.clientes.Controller;
-import system.presentation.clientes.Model;
-import system.presentation.clientes.View;
 
 /**
  *
@@ -15,11 +13,24 @@ import system.presentation.clientes.View;
  */
 public class Application {
     
+    
         public static void main(String[] args) {
-        Model model=new Model() ;
-        View view = new View();
-        Controller controller = new Controller(model,view);
-        controller.show();  
+            
+         system.presentation.prestamos.Model modelPrestamos = new system.presentation.prestamos.Model() ;
+        system.presentation.prestamos.View viewPrestamos = new system.presentation.prestamos.View();
+        system.presentation.prestamos.Controller controllerPrestamos = new system.presentation.prestamos.Controller(modelPrestamos,viewPrestamos);
+        PRESTAMOS = controllerPrestamos;
+        
+        
+        system.presentation.clientes.Model modelClientes=new system.presentation.clientes.Model() ;
+        system.presentation.clientes.View viewClientes = new system.presentation.clientes.View();
+        system.presentation.clientes.Controller controllerClientes = new Controller(modelClientes,viewClientes);
+        CLIENTES = controllerClientes;
+        CLIENTES.show();
+        
+
     }
+        public static system.presentation.clientes.Controller CLIENTES;
+        public static system.presentation.prestamos.Controller PRESTAMOS;
 
      }

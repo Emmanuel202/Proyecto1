@@ -1,5 +1,7 @@
 package system.presentation.prestamos;
 
+import system.Application;
+
 public class Controller {
 
     Model model;
@@ -20,6 +22,11 @@ public class Controller {
     }
     public void hide(){
         this.view.setVisible(false);
+    }
+    
+    public void clientesSHOW(){
+        this.hide();
+        Application.CLIENTES.show();
     }
 
 }

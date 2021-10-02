@@ -2,6 +2,7 @@ package system.presentation.clientes;
 
 import java.util.ArrayList;
 import java.util.List;
+import system.Application;
 import system.logic.Canton;
 import system.logic.Cliente;
 import system.logic.Distrito;
@@ -28,6 +29,9 @@ public class Controller {
 
     public void show() {
         this.view.setVisible(true);
+    }
+    public void hide(){
+        this.view.setVisible(false);
     }
 
     public Provincia getProvincia(int x, int y) {
@@ -75,6 +79,11 @@ public class Controller {
             model.commit();
         }
 
+    }
+    
+    public void prestamosSHOW(){
+        this.hide();
+        Application.PRESTAMOS.show();
     }
 
     public void exit() {

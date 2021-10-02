@@ -149,6 +149,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         });
 
         prestamos.setText("Ir a Prestamos...");
+        prestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prestamosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,6 +305,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         controller.exit();
     }//GEN-LAST:event_formWindowClosing
+
+    private void prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prestamosActionPerformed
+        // TODO add your handling code here:
+        controller.prestamosSHOW();
+    }//GEN-LAST:event_prestamosActionPerformed
 
     private Provincia getProvinciaActual() {
         return provinciaActual;
