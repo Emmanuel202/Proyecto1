@@ -1,7 +1,6 @@
 package system.logic;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import system.data.Data;

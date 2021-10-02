@@ -27,8 +27,6 @@ public class Prestamo {
         this.id = id;
     }
 
-
-
     public Prestamo() {
         this.id = "";
         this.monto = 0;
