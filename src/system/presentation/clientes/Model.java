@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import system.logic.Canton;
+import system.logic.Cliente;
 import system.logic.Distrito;
 import system.logic.Provincia;
 
 public class Model extends Observable{
     
     // Model attributes here
+    Cliente cliente;
     Provincia provincia;
     List<Canton> cantones;
     List<Distrito> distritos;
@@ -37,6 +39,14 @@ public class Model extends Observable{
 
     public void setDistritos(List<Distrito> distritos) {
         this.distritos = distritos;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     

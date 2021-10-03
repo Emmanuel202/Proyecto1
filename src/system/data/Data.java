@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package system.data;
 
 import java.util.ArrayList;
@@ -11,25 +6,27 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import system.logic.Canton;
+import system.logic.Cliente;
 import system.logic.Distrito;
+import system.logic.Prestamo;
 import system.logic.Provincia;
 
-/**
- *
- * @author Emmanuel
- */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Data {
     
-    private List<Provincia>provincias;
+    private List<Cliente> clientes;
+    private List<Provincia> provincias;
     private List<Canton> cantones;
     private List<Distrito> distritos;
-    
-    public Data(){
+    private List<Prestamo> prestamos;
+
+    public Data() {
+        clientes = new ArrayList();
         provincias = new ArrayList<>();
         cantones = new ArrayList<>();
         distritos = new ArrayList<>();
+        prestamos = new ArrayList<>();
     }
 
     public List<Provincia> getProvincias() {
@@ -55,7 +52,23 @@ public class Data {
     public void setDistritos(List<Distrito> distritos) {
         this.distritos = distritos;
     }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
     
     
-    
+
 }
