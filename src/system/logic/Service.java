@@ -34,6 +34,11 @@ public class Service {
         this.clienteActual = clienteActual;
     }
 
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     //----------------------------------------------------------------------------------------------Service methods for Ciente
     public void clienteAdd(Cliente cliente) throws Exception {
         Cliente old = data.getClientes().stream().filter(c -> c.getCedula().equals(cliente.getCedula())).findFirst().orElse(null);
@@ -93,10 +98,26 @@ public class Service {
             if (provinciaTemp.getNombre() == nombreProvincia) {
                 return provinciaTemp.getCantones();
             }
+<<<<<<< HEAD
+=======
+        }
+        return new ArrayList<>();
+    }
+    
+    public List<Distrito> getDistritos(String nombreCanton){
+        List<Canton> cantones = data.getCantones();
+        
+        for(int i = 0; i<cantones.size();i++){
+            Canton cantonesTemp = cantones.get(i);
+            if(cantonesTemp.getNombre() == nombreCanton){
+                return cantonesTemp.getDistritos();
+            }
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         }
         return new ArrayList<>();
     }
 
+<<<<<<< HEAD
     public List<Distrito> getDistritos(String nombreCanton) {
         List<Canton> cantones = data.getCantones();
 
@@ -109,6 +130,8 @@ public class Service {
         return new ArrayList<>();
     }
 
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     public void store() {
         try {
             XmlPersister.instance().store(data);
@@ -116,6 +139,7 @@ public class Service {
         }
     }
 //-------------------------------------------------------------------------------------------------------fin de metodos de cliente
+<<<<<<< HEAD
 
 //----------------------------------Metodos relacionados a prestamo--------------------------------------------------
     public void prestamoAddTo(String idCliente, Prestamo prestamo) throws Exception {
@@ -140,6 +164,31 @@ public class Service {
     }
     //-------------------------------------------------------------------------------------------------------------------------
 
+=======
+    
+//----------------------------------Metodos relacionados a prestamo--------------------------------------------------
+    public void prestamoAddTo(String idCliente, Prestamo prestamo){
+        try {
+            Cliente result = clienteGet(idCliente);
+            result.getPrestamos().add(prestamo);
+        } catch (Exception ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        public List<Prestamo> prestamoSearch(String idCliente){
+            
+        try {
+            Cliente result;
+            result = clienteGet(idCliente);
+            List<Prestamo> prestamos = result.getPrestamos();
+            return prestamos;
+        } catch (Exception ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ArrayList<>();           
+    }
+   //-------------------------------------------------------------------------------------------------------------------------
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     public Service() {
         try {
             clienteActual = new Cliente();

@@ -2,7 +2,10 @@ package system.logic;
 
 
 
+<<<<<<< HEAD
 import java.util.Objects;
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
@@ -25,7 +28,11 @@ public class Prestamo {
         this.id = id;
         this.monto = monto;
         this.plazo = plazo;
+<<<<<<< HEAD
         this.tasa = tasa/100;
+=======
+        this.tasa = tasa;
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     }
     
 
@@ -38,10 +45,16 @@ public class Prestamo {
     
 
     public double calcularCuota() {
+<<<<<<< HEAD
         double num = monto*tasa;
         double s = Math.pow(1+tasa, -plazo);
         double den = (1-s);
         return (num/den);
+=======
+        int exp = this.plazo * -1;
+        double base = this.tasa + 1;
+        return (this.monto * this.tasa) / (1 - (Math.pow(base, exp)));
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     }
     /*  TEMPORALEMTE COMENTADO EN LO QUE SE CREA LA CLASE MENSUALIDAD
 
@@ -100,6 +113,7 @@ public class Prestamo {
         r.append(String.format("Monto: %.0f  Tasa: %.0f  Plazo: %d  Cuota: %.0f%n", this.monto, this.tasa * 100, this.plazo, this.calcularCuota()));
         return r.toString();
     }
+<<<<<<< HEAD
     
     
     
@@ -131,6 +145,12 @@ public class Prestamo {
         }
         return true;
     }
+=======
+
+    /*public List<Mensualidad> getMensualidades() {
+        return this.m;
+    }*/
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     
 
 }

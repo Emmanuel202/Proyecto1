@@ -37,7 +37,11 @@ public class PrestamosTableModel extends AbstractTableModel implements TableMode
             case 1:return p.getMonto();
             case 2:return p.getPlazo();
             case 3:return p.getTasa();
+<<<<<<< HEAD
             case 4:return (int)p.calcularCuota();
+=======
+            case 4:return p.calcularCuota();
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
             default: return "";
         }
     }

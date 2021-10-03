@@ -28,7 +28,11 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+=======
+                      <Group type="103" groupAlignment="0" attributes="0">
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -42,6 +46,7 @@
                           </Group>
                           <Component id="btn_regresar" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="jScrollPane1" min="-2" pref="597" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btn_listar" min="-2" max="-2" attributes="0"/>
@@ -53,11 +58,24 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+=======
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btn_listar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                              <Component id="btn_agregar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" min="-2" pref="597" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="cuota" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -67,6 +85,15 @@
                           <Component id="txt_plazo" alignment="1" max="32767" attributes="0"/>
                           <Component id="txt_tasa" alignment="1" max="32767" attributes="0"/>
                           <Component id="labelCuota" alignment="0" max="32767" attributes="0"/>
+=======
+                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="TXT_ID" max="32767" attributes="0"/>
+                          <Component id="txt_monto" max="32767" attributes="0"/>
+                          <Component id="txt_plazo" max="32767" attributes="0"/>
+                          <Component id="txt_tasa" max="32767" attributes="0"/>
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
                       </Group>
                   </Group>
               </Group>
@@ -89,6 +116,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -128,6 +156,36 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="229" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+=======
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TXT_ID" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_monto" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_plazo" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_tasa" alignment="3" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btn_agregar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_listar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="229" max="-2" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
               <Component id="btn_regresar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
@@ -178,8 +236,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="id">
+<<<<<<< HEAD
     </Component>
     <Component class="javax.swing.JLabel" name="nombre">
+=======
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="nombre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel4"/>
+      </Properties>
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -210,9 +279,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TXT_ID">
+<<<<<<< HEAD
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TXT_IDActionPerformed"/>
       </Events>
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     </Component>
     <Component class="javax.swing.JTextField" name="txt_monto">
     </Component>
@@ -236,6 +308,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_listarActionPerformed"/>
       </Events>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JLabel" name="cuota">
       <Properties>
         <Property name="text" type="java.lang.String" value="CUOTA:"/>
@@ -243,5 +316,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelCuota">
     </Component>
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
   </SubComponents>
 </Form>

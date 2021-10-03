@@ -7,11 +7,14 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+<<<<<<< HEAD
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
 import system.logic.Canton;
 import system.logic.Cliente;
 import system.logic.Distrito;
@@ -45,7 +48,10 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         Cliente cliente = model.getCliente();
         cedula.setText(cliente.getCedula());
         nombre.setText(cliente.getNombre());
+<<<<<<< HEAD
         this.cedula.setInputVerifier(new MyInputVerifier()); 
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         if(cliente.getProvincia().getNombre() != ""){
           provinciaActual = cliente.getProvincia();
           provincia.setText(cliente.getProvincia().getNombre());
@@ -54,7 +60,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         {
             provinciaActual = new Provincia();
             canton.setModel(new DefaultComboBoxModel(provinciaActual.getCantones().toArray()));
+<<<<<<< HEAD
             cliente.getPrestamos();
+=======
+            List<Prestamo> prestamos = cliente.getPrestamos();
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
             
         }
              //   canton.setSelectedItem(cliente.getCanton());
@@ -259,7 +269,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             provincia.setText(cliente.getProvincia().getNombre());
             mapaPrincipal.setIcon(maps[Integer.parseInt(cliente.getProvincia().getNumero())]);
             btn_prestamo.setEnabled(true);
+<<<<<<< HEAD
             cliente.getPrestamos();
+=======
+            List<Prestamo> prestamos = cliente.getPrestamos();
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         }
         else
         {            
@@ -309,6 +323,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         canton.removeAllItems();
         distrito.removeAllItems();
     }//GEN-LAST:event_btnSalvarActionPerformed
+<<<<<<< HEAD
 
     private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
         String nombreCanton = canton.getSelectedItem().toString();
@@ -325,6 +340,24 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         controller.prestamosSHOW();
     }//GEN-LAST:event_btn_prestamoActionPerformed
 
+=======
+
+    private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
+        String nombreCanton = canton.getSelectedItem().toString();
+        distrito.setModel(new DefaultComboBoxModel(controller.getDistritos(nombreCanton).toArray()));
+        this.provincia.setText(this.getProvinciaActual().getNombre());
+    }//GEN-LAST:event_cantonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        controller.exit();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btn_prestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prestamoActionPerformed
+        // TODO add your handling code here:
+        controller.prestamosSHOW();
+    }//GEN-LAST:event_btn_prestamoActionPerformed
+
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     private Provincia getProvinciaActual() {
         return provinciaActual;
     }
@@ -332,6 +365,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void setProvinciaActual(Provincia provinciaActual) {
         this.provinciaActual = provinciaActual;
     }
+<<<<<<< HEAD
         public class MyInputVerifier extends InputVerifier {
     @Override
     public boolean verify(JComponent input) {
@@ -348,6 +382,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     }
 
     }
+=======
+
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     private Provincia provinciaActual;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultar;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package system.presentation.prestamos;
 
 import java.math.BigDecimal;
@@ -10,6 +11,11 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextField;
 import system.MyInputVerifier;
+=======
+
+package system.presentation.prestamos;
+import java.util.Observable;
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
 import system.logic.Cliente;
 import system.logic.Prestamo;
 
@@ -18,23 +24,37 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 //**************  MVC ***********
     Controller controller;
     Model model;
+<<<<<<< HEAD
 
     public void setController(Controller controller) {
         this.controller = controller;
+=======
+    
+    public void setController(Controller controller){
+        this.controller=controller;
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     }
 
     public Controller getController() {
         return controller;
     }
+<<<<<<< HEAD
 
     public void setModel(Model model) {
         this.model = model;
         model.addObserver(this);
+=======
+    
+    public void setModel(Model model){
+        this.model=model;
+         model.addObserver(this);
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     }
 
     public Model getModel() {
         return model;
     }
+<<<<<<< HEAD
 
     @Override
     @SuppressWarnings("MalformedFormatString")
@@ -73,6 +93,47 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     public View() {
         initComponents();
 
+=======
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        Cliente cliente = model.getCliente();
+        Prestamo prestamo = model.getPrestamo();
+        if(cliente.equals(new Cliente()))
+        {
+            id.setText("");
+            nombre.setText("");
+           this.TXT_ID.setText("");
+           this.txt_monto.setText("");
+           this.txt_plazo.setText("");
+           this.txt_tasa.setText("");
+       }
+       else
+       {
+           id.setText(cliente.getCedula());
+           nombre.setText(cliente.getNombre());
+           this.TXT_ID.setText(prestamo.getId());
+           this.txt_monto.setText(String.valueOf(prestamo.getMonto()));
+           this.txt_plazo.setText(String.valueOf(prestamo.getPlazo()));
+           this.txt_tasa.setText(String.valueOf(prestamo.getTasa()));
+           this.jTablePrestamos.setModel(new PrestamosTableModel(model.getPrestamos()));
+          
+           
+           
+       }
+    }
+//************** END MVC ***********
+
+  /*  public void show(Prestamo p) {
+        jLabelPrestamo.setText(p.toString());
+        jTableMensualidades.setModel(new MensualidadTableModel(p.getMensualidades()));
+    }
+   */
+    public View() {
+        initComponents();
+    
+        
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     }
 
     /**
@@ -102,8 +163,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
         txt_tasa = new javax.swing.JTextField();
         btn_agregar = new javax.swing.JButton();
         btn_listar = new javax.swing.JButton();
+<<<<<<< HEAD
         cuota = new javax.swing.JLabel();
         labelCuota = new javax.swing.JLabel();
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Préstamo");
@@ -137,6 +201,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         jLabel1.setText("NOMBRE DEL CLIENTE:");
 
+<<<<<<< HEAD
+=======
+        id.setText("jLabel3");
+
+        nombre.setText("jLabel4");
+
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("DATOS DEL PRESTAMO");
 
@@ -148,12 +219,15 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
 
         jLabel7.setText("PLAZO DEL PRESTAMO:");
 
+<<<<<<< HEAD
         TXT_ID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TXT_IDActionPerformed(evt);
             }
         });
 
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         btn_agregar.setText("AGREGAR NUEVO PRESTAMO");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,8 +242,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
             }
         });
 
+<<<<<<< HEAD
         cuota.setText("CUOTA:");
 
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,7 +255,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(31, 31, 31)
+<<<<<<< HEAD
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+=======
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -189,6 +270,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                                     .addComponent(id)))
                             .addComponent(btn_regresar)
                             .addComponent(jLabel3)
+<<<<<<< HEAD
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_listar)
@@ -197,10 +279,20 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                                 .addGap(41, 41, 41))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(87, 87, 87)
+=======
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_listar)
+                                .addGap(67, 67, 67)
+                                .addComponent(btn_agregar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
+<<<<<<< HEAD
                             .addComponent(jLabel6)
                             .addComponent(cuota))
                         .addGap(29, 29, 29)
@@ -210,6 +302,15 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                             .addComponent(txt_plazo, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txt_tasa, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelCuota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+=======
+                            .addComponent(jLabel6))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TXT_ID)
+                            .addComponent(txt_monto)
+                            .addComponent(txt_plazo)
+                            .addComponent(txt_tasa))))
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
                 .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
@@ -225,6 +326,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                     .addComponent(nombre))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
+<<<<<<< HEAD
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -256,6 +358,31 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(TXT_ID))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_monto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_plazo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_tasa))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_agregar)
+                    .addComponent(btn_listar))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
                 .addComponent(btn_regresar)
                 .addGap(27, 27, 27))
         );
@@ -264,23 +391,42 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+<<<<<<< HEAD
+=======
+        // TODO add your handling code here:
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         controller.clientesSHOW();
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+<<<<<<< HEAD
+=======
+        // TODO add your handling code here:
+        
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
         String num = this.TXT_ID.getText();
         double monto = Double.parseDouble(this.txt_monto.getText());
         int plazo = Integer.parseInt(this.txt_plazo.getText());
         double tasa = Double.parseDouble(this.txt_tasa.getText());
+<<<<<<< HEAD
         controller.prestamoAddTo(this.id.getText(), new Prestamo(num, monto, plazo, tasa));
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void jTablePrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrestamosMouseClicked
         if (evt.getClickCount() == 2) {
+=======
+        controller.prestamoAddTo(this.id.getText() ,new Prestamo(num,monto,plazo,tasa));
+        controller.prestamoSearch(id.getText());
+    }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void jTablePrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePrestamosMouseClicked
+                if(evt.getClickCount()==2){
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
             controller.PrestamoEdit(this.jTablePrestamos.getSelectedRow());
         }
     }//GEN-LAST:event_jTablePrestamosMouseClicked
 
+<<<<<<< HEAD
 
     private void btn_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarActionPerformed
         controller.prestamoSearch(id.getText());
@@ -289,13 +435,24 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private void TXT_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXT_IDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TXT_IDActionPerformed
+=======
+    private void btn_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_listarActionPerformed
+
+    
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TXT_ID;
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_listar;
     private javax.swing.JButton btn_regresar;
+<<<<<<< HEAD
     private javax.swing.JLabel cuota;
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -306,11 +463,19 @@ public class View extends javax.swing.JFrame implements java.util.Observer {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePrestamos;
+<<<<<<< HEAD
     private javax.swing.JLabel labelCuota;
+=======
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
     private javax.swing.JLabel nombre;
     private javax.swing.JTextField txt_monto;
     private javax.swing.JTextField txt_plazo;
     private javax.swing.JTextField txt_tasa;
     // End of variables declaration//GEN-END:variables
 
+<<<<<<< HEAD
+=======
+
+  
+>>>>>>> 175dd393d6680ce657160a9768194dc578f7942b
 }
